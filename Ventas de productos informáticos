@@ -1,0 +1,12 @@
+create database P_informaticos
+use P_informaticos
+create TABLE Fabricantes(
+    Codigo int (5) not null auto_increment primary key,
+    Nombre varchar (100) not null,
+);
+create TABLE Articulos(
+    Codigo int (5) not null auto_increment primary key
+    Nombre varchar (100) not null,
+    Precio int (10),
+    Fabricante int () not null,
+);
