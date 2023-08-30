@@ -9,28 +9,28 @@ create TABLE Articulos(
     Codigo int (5) not null auto_increment primary key,
     Nombre varchar (100) not null,
     Precio int (10),
-    Fabricante int (5),
+    Fabricante int (5) not null,
     foreign key (Fabricante) REFERENCES Fabricantes(codigo)
 );
 
 INSERT INTO Fabricantes(nombre)
-VALUES('Lucas'),
-('Martin'),
-('Samanta'),
-('Aron'),
-('Santiago');
+VALUES('Microsoft'),
+('Nvidia'),
+('Apple'),
+('IBM'),
+('LG');
 
-INSERT INTO Articulos(nombre,precio)
-VALUES('Procesador','10000'),
-('Cargador 20V','3500'),
-('Auriculares','20000'),
-('Mouse','8000'),
-('Monitor','50000'),
-('Placa de Video','120000'),
-('Cable Ethernet','2000'),
-('Teclado','5698'),
-('CPU','500000'),
-('Mousepad','4000');
+INSERT INTO Articulos(nombre,precio,Fabricante)
+VALUES('Procesador','10000','2'),
+('Cargador 20V','3500','5'),
+('Auriculares','20000','3'),
+('Mouse','8000','1'),
+('Monitor','50000','1'),
+('Placa de Video','120000','2'),
+('Cable Ethernet','2000','3'),
+('Teclado','5698','1'),
+('CPU','500000','3'),
+('Mousepad','4000','4');
 
 Select nombre from Articulos;
 
