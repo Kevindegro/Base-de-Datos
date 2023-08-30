@@ -59,3 +59,7 @@ Select nombre,precio from Articulos
 where precio >=18000 
 order by nombre asc;
 
+
+Select F.codigo,F.nombre,A.codigo,A.nombre,A.precio,A.Fabricante 
+from Fabricantes F,Articulos A
+where F.Codigo=A.Codigo;
