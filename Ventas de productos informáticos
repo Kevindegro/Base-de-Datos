@@ -1,3 +1,4 @@
+drop database P_informaticos;
 create database P_informaticos;
 use P_informaticos
 create TABLE Fabricantes(
@@ -30,3 +31,12 @@ VALUES('Procesador','10000'),
 ('Teclado','5698'),
 ('CPU','500000'),
 ('Mousepad','4000');
+
+Select nombre from Articulos;
+
+Select nombre,precio from Articulos;
+
+Select nombre from Articulos where Precio <20000;
+
+Select * from Articulos
+where precio between 60000 and 120000;
