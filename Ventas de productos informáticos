@@ -19,5 +19,14 @@ VALUES('Lucas'),
 ('Aron'),
 ('Santiago');
 
-INSERT INTO Articulos(nombre,precio,fabricante)
-VALUES()
+INSERT INTO Articulos(nombre,precio)
+VALUES('Procesador','10000'),
+('Cargador 20V','3500'),
+('Auriculares','20000'),
+('Mouse','8000'),
+('Monitor','50000'),
+('Placa de Video','120000'),
+('Cable Ethernet','2000'),
+('Teclado','5698'),
+('CPU','500000'),
+('Mousepad','4000');
