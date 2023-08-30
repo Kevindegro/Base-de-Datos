@@ -40,3 +40,7 @@ Select nombre from Articulos where Precio <20000;
 
 Select * from Articulos
 where precio between 60000 and 120000;
+
+Select nombre,precio/700 from Articulos
+
+Select AVG(precio) from Articulos;
