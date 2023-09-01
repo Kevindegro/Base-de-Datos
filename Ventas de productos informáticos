@@ -33,33 +33,54 @@ VALUES('Procesador','10000','2'),
 ('Mousepad','4000','4');
 
 Select nombre from Articulos;
-
+/*1*/
 Select nombre,precio from Articulos;
-
+/*2*/
 Select nombre from Articulos where Precio <20000;
-
+/*3*/
 Select * from Articulos
 where precio between 60000 and 120000;
-
+/*4*/
 Select nombre,precio/700 from Articulos
-
+/*5*/
 Select AVG(precio) from Articulos;
-
+/*6*/
 Select AVG(precio) from Articulos
 Where Fabricante=2;
-
+/*7*/
 Select Fabricante from Articulos
 where precio >=18000;
-
+/*8*/
 Select nombre,precio from Articulos
 where precio >=18000 
 order by precio desc;
-
+/*9*/
 Select nombre,precio from Articulos
 where precio >=18000 
 order by nombre asc;
 
-
+/*10*/
 Select F.codigo,F.nombre,A.codigo,A.nombre,A.precio,A.Fabricante 
 from Fabricantes F,Articulos A
 where F.Codigo=A.Codigo;
+
+Select F.codigo,F.nombre,A.codigo,A.nombre,A.precio,A.Fabricante 
+from Fabricantes F inner join Articulos A
+on F.Codigo=A.Codigo;
+
+/*11*/
+Select A.codigo,A.nombre,A.precio,A.Fabricante,F.nombre
+from Articulos A inner join Fabricantes F
+on A.Codigo=F.Codigo;
+
+/*12*/
+
+/*13*/
+
+/*14*/
+Select Distinct F.Nombre 
+from Fabricantes F,Articulos A
+Where A.precio >=15000;
+
+/*15*/
+Select  
