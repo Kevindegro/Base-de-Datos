@@ -9,6 +9,7 @@ create TABLE Articulos(
     Codigo int (5) not null auto_increment primary key,
     Nombre varchar (100) not null,
     Precio int (10),
+    F_fabricacion date null,
     Fabricante int (5) not null,
     foreign key (Fabricante) REFERENCES Fabricantes(Codigo)
 );
@@ -31,6 +32,73 @@ VALUES('Procesador','10000','2'),
 ('Teclado','5698','1'),
 ('CPU','500000','3'),
 ('Mousepad','4000','4');
+
+------------------------------------------------------------------------------------------------------------------------------------
+                                                                          /* TP3*/
+drop database P_informaticos;
+create database P_informaticos;
+use P_informaticos
+create TABLE Fabricantes(
+    Codigo int (5) not null auto_increment primary key,
+    Nombre varchar (100) not null
+);
+create TABLE Articulos(
+    Codigo int (5) not null auto_increment primary key,
+    Nombre varchar (100) not null,
+    Precio int (10),
+    F_fabricacion date null,
+    Fabricante int (5) not null,
+    foreign key (Fabricante) REFERENCES Fabricantes(Codigo)
+);
+
+INSERT INTO Fabricantes(nombre)
+VALUES('Microsoft'),
+('Nvidia'),
+('Apple'),
+('IBM'),
+('LG');
+
+INSERT INTO Articulos(nombre,precio,Fabricante,F_fabricacion)
+VALUES('Procesador','10000','2','2023-08-15'),
+('Cargador 20V','3500','5','2023-03-21'),
+('Auriculares','20000','3','2023-05-15'),
+('Mouse','8000','1','2023-01-01'),
+('Monitor','50000','1','2023-12-12'),
+('Placa de Video','120000','2','2023-09-12'),
+('Cable Ethernet','2000','3','2023-04-06'),
+('Teclado','5698','1','2023-04-26'),
+('CPU','500000','3','2023-10-19'),
+('Mousepad','4000','4','2023-01-23'),
+('Mousepad','10000','2','2023-01-23'),
+('Mousepad','7000','3','2023-01-23');
+
+Select * from Articulos
+where nombre in('Mousepad');
+
+Select * from Articulos
+where nombre not in('Mousepad');
+
+Select Distinct F.Nombre,AVG(A.precio) 
+from Fabricantes F,Articulos A
+Where A.precio >=15000;
+
+Select A.codigo,A.nombre,A.precio,A.Fabricante,F.nombre
+from Articulos A left join Fabricantes F
+on A.Fabricante=F.Codigo;
+
+Select A.codigo,A.nombre,A.precio,A.Fabricante,F.nombre
+from Articulos A right join Fabricantes F
+on A.Fabricante=F.Codigo;
+
+Select nombre,Fabricante,precio from Articulos
+where precio > ALL(Select precio From Articulos where precio < 5000);
+
+Select * from Articulos 
+where codigo = any (Select codigo from Articulos where Fabricante = 2);
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 Select nombre from Articulos;
 
