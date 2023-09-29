@@ -6,7 +6,8 @@ create table Epoca(
 Nombre varchar (20) not null primary key,
 Caracteristicas varchar (100) null,
 A_inicio int (4) not null,
-A_final int (4) not null
+A_final int (4) not null,
+Genero_Epoca varchar (20) not null
 );
 
 create table Genero(
@@ -45,18 +46,18 @@ foreign key (Genero) REFERENCES Genero(Nombre)
 );
 
 
-INSERT INTO Epoca (Nombre, Caracteristicas, A_inicio, A_final)
+INSERT INTO Epoca (Nombre, Caracteristicas, A_inicio, A_final, Genero_Epoca)
 VALUES
-    ('Renacimiento', 'epoca musical caracterizada por la polifonia y el canto gregoriano', 1400, 1600),
-    ('Barroco', 'epoca musical con el surgimiento de la opera y la musica de clavecin', 1600, 1750),
-    ('Clasicismo', 'epoca musical con compositores como Mozart y Beethoven', 1750, 1820),
-    ('Romanticismo', 'epoca musical con enfasis en la expresion emocional y grandes sinfonias', 1820, 1910),
-    ('Impresionismo', 'epoca musical que busca crear impresiones sensoriales a traves de la musica', 1870, 1920),
-    ('Siglo XX', 'epoca musical de experimentacion con atonalidad y musica electronica', 1900, 2000),
-    ('Jazz Era', 'epoca musical marcada por la explosion del jazz en los años 1920', 1920, 1930),
-    ('Rock & Roll', 'epoca musical que revoluciono la musica popular en los años 1950', 1950, 1960),
-    ('Disco', 'epoca musical conocida por su musica bailable y discotecas, años 1970', 1970, 1980),
-    ('Era del Hip-Hop', 'epoca musical que dio origen al movimiento hip-hop en los años 1980', 1980, 2000);
+    ('Antigua', 'Época histórica marcada por civilizaciones como Egipto y Roma', -3000, 476, 'Clásica'),
+    ('Renacimiento', 'Período de florecimiento cultural y artístico', 1300, 1600, 'Renacimiento'),
+    ('Barroco', 'Época musical caracterizada por la ornamentación y la ópera', 1600, 1750, 'Clásica'),
+    ('Romanticismo', 'Época de expresión emocional en la música y grandes sinfonías', 1820, 1910, 'Romanticismo'),
+    ('Jazz Era', 'Época del jazz con improvisación y ritmos africanos', 1920, 1930, 'Jazz'),
+    ('Rock & Roll', 'Época de revolución musical y el surgimiento del rock', 1950, 1960, 'Rock'),
+    ('Era del Hip-Hop', 'Época del hip-hop y la cultura urbana', 1980, 2000, 'Hip-Hop'),
+    ('Clásica', 'Época de música orquestal y compositores como Mozart y Beethoven', 1750, 1820, 'Clásica'),
+    ('Salsa', 'Época de la salsa y la música latina', 1970, 1980, 'Salsa'),
+    ('Siglo XX', 'Época de experimentación en la música y avances tecnológicos', 1900, 2000, 'Siglo XX');
     
 INSERT INTO Genero (Nombre, Caracteristicas, Origen, Instrumento, Epoca)
 VALUES
@@ -110,8 +111,11 @@ VALUES
     ('Concierto de Aranjuez', 1939, 'Clasica'),
     ('Celia y Tito', 1981, 'Salsa');
 
-
-SELECT G.Nombre AS Genero, G.Caracteristicas AS CaracteristicasGenero, E.Nombre AS Epoca, E.A_inicio AS PeriodoInicio, M.Nombre AS NombreMusico, M.F_nacimiento AS FechaNacimientoMusico
+//1
+SELECT G.Nombre AS Genero,G.Caracteristicas AS C_Genero,G.Origen,G.Instrumento, E.Nombre AS Epoca, E.A_inicio AS P_Inicio, M.Nombre AS Nombre_Musico, M.F_nacimiento AS F_Nacimiento_Musico
 FROM Genero G
 JOIN Epoca E ON G.Epoca = E.Nombre
 LEFT JOIN Musico M ON G.Nombre = M.Genero;
+
+//2
+SELECT
