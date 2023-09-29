@@ -1,3 +1,4 @@
+drop database Centro_Cultural;
 create database Centro_Cultural;
 use Centro_Cultural;
 
@@ -12,14 +13,14 @@ create table Genero(
 Nombre varchar (20) not null primary key,
 Caracteristicas varchar (100) null,
 Origen varchar (200) NULL,
-Instrumento varchar (100) not nullm
+Instrumento varchar (100) not null,
 Epoca varchar (20) not null,
 foreign key (Epoca) REFERENCES Epoca (Nombre)
 );
 
 create table Musico(
 Nombre varchar (20) not null primary key,
-F_nacmiento date not null,
+F_nacimiento date not null,
 F_muerte date null,
 Historia varchar (200) null,
 Genero varchar (20) not null,
@@ -43,3 +44,68 @@ Genero varchar (20) not null,
 foreign key (Genero) REFERENCES Genero(Nombre)
 );
 
+
+INSERT INTO Epoca (Nombre, Caracteristicas, A_inicio, A_final)
+VALUES
+    ('Renacimiento', 'epoca musical caracterizada por la polifonia y el canto gregoriano', 1400, 1600),
+    ('Barroco', 'epoca musical con el surgimiento de la opera y la musica de clavecin', 1600, 1750),
+    ('Clasicismo', 'epoca musical con compositores como Mozart y Beethoven', 1750, 1820),
+    ('Romanticismo', 'epoca musical con enfasis en la expresion emocional y grandes sinfonias', 1820, 1910),
+    ('Impresionismo', 'epoca musical que busca crear impresiones sensoriales a traves de la musica', 1870, 1920),
+    ('Siglo XX', 'epoca musical de experimentacion con atonalidad y musica electronica', 1900, 2000),
+    ('Jazz Era', 'epoca musical marcada por la explosion del jazz en los años 1920', 1920, 1930),
+    ('Rock & Roll', 'epoca musical que revoluciono la musica popular en los años 1950', 1950, 1960),
+    ('Disco', 'epoca musical conocida por su musica bailable y discotecas, años 1970', 1970, 1980),
+    ('Era del Hip-Hop', 'epoca musical que dio origen al movimiento hip-hop en los años 1980', 1980, 2000);
+    
+INSERT INTO Genero (Nombre, Caracteristicas, Origen, Instrumento, Epoca)
+VALUES
+    ('Rock', 'Genero caracterizado por guitarras electricas y ritmos energicos', 'Estados Unidos', 'Guitarra electrica', 'Rock & Roll'),
+    ('Clasica', 'Musica compuesta para orquestas y ensembles', 'Varios paises', 'Instrumentos orquestales', 'Clasicismo'),
+    ('Jazz', 'Genero musical improvisado con influencias africanas', 'Estados Unidos', 'Saxofon, Trompeta', 'Jazz Era'),
+    ('Hip-Hop', 'Musica basada en el rap y la cultura urbana', 'Estados Unidos', 'Turntables, Microfono', 'Era del Hip-Hop'),
+    ('Pop', 'Musica popular con enfasis en la melodia y el gancho', 'Varios paises', 'Varios instrumentos', 'Siglo XX'),
+    ('Electronica', 'Musica creada con sintetizadores y dispositivos electronicos', 'Varios paises', 'Sintetizador', 'Siglo XX'),
+    ('Reggae', 'Genero jamaicano con un ritmo caracteristico', 'Jamaica', 'Guitarra, Bajo', 'Siglo XX'),
+    ('Salsa', 'Genero de baile latino con influencias caribeñas', 'Varios paises', 'Percusion, Trombon', 'Siglo XX'),
+    ('Country', 'Musica con raices en la musica folklorica estadounidense', 'Estados Unidos', 'Guitarra acustica', 'Siglo XX'),
+    ('R&B', 'Rhythm and Blues con influencias del soul y el jazz', 'Estados Unidos', 'Piano, Voz', 'Siglo XX');
+
+INSERT INTO Musico (Nombre, F_nacimiento, F_muerte, Historia, Genero)
+VALUES
+    ('Ludwig van Beethoven', '1770-12-17', '1827-03-26', 'Compositor y pianista aleman, una de las figuras mas influyentes en la musica clasica.', 'Clasica'),
+    ('Elvis Presley', '1935-01-08', '1977-08-16', 'Conocido como el Rey del Rock and Roll, fue un influyente cantante y actor estadounidense.', 'Rock'),
+    ('Miles Davis', '1926-05-26', '1991-09-28', 'Innovador del jazz y destacado trompetista y compositor estadounidense.', 'Jazz'),
+    ('Bob Marley', '1945-02-06', '1981-05-11', 'Lider del movimiento reggae, fue un influyente cantante y compositor jamaicano.', 'Reggae'),
+    ('Michael Jackson', '1958-08-29', '2009-06-25', 'Reconocido como el Rey del Pop, fue un iconico cantante, compositor y bailarin estadounidense.', 'Pop'),
+    ('Johnny Cash', '1932-02-26', '2003-09-12', 'Figura destacada en la musica country y folk estadounidense, conocido como el Hombre de Negro.', 'Country'),
+    ('Aretha Franklin', '1942-03-25', '2018-08-16', 'La Reina del Soul, cantante y pianista estadounidense con una voz poderosa.', 'R&B'),
+    ('Daft Punk', '1993-01-01', '2021-02-22', 'Duo de musica electronica frances conocido por su estilo unico y cascos.', 'Electronica'),
+    ('Santana', '1947-07-20', NULL, 'Guitarrista mexicano-estadounidense conocido por su fusion de rock y musica latina.', 'Rock'),
+    ('Celia Cruz', '1925-10-21', '2003-07-16', 'La Reina de la Salsa, cantante cubana con una carrera internacional destacada.', 'Salsa');
+
+INSERT INTO Instrumento (Nombre, U_creacion, Creador, Tipo, Material)
+VALUES
+    ('Piano', 'Año 1700', 'Bartolomeo Cristofori', 'Teclado', 'Madera y metal'),
+    ('Guitarra', 'Siglo XV', 'Anonimo', 'Cuerda', 'Madera y metal'),
+    ('Violin', 'Siglo XVI', 'Andrea Amati', 'Cuerda', 'Madera'),
+    ('Trompeta', 'Siglo XV', 'Anonimo', 'Viento-metal', 'Laton'),
+    ('Bateria', 'Siglo XIX', 'Anonimo', 'Percusion', 'Madera y metal'),
+    ('Flauta', 'Prehistoria', 'Anonimo', 'Viento-madera', 'Madera'),
+    ('Saxofon', 'Siglo XIX', 'Adolphe Sax', 'Viento-metal', 'Laton'),
+    ('organo', 'Siglo III a.C.', 'Ctesibio de Alejandria', 'Teclado', 'Metal y madera'),
+    ('Arpa', 'Siglo XVIII a.C.', 'Anonimo', 'Cuerda', 'Madera'),
+    ('Tambor', 'Prehistoria', 'Anonimo', 'Percusion', 'Piel y madera');
+
+INSERT INTO Obras_Famosas (Nombre, F_creacion, Genero)
+VALUES
+    ('Sonata para Piano No. 14', 1801, 'Clasica'),
+    ('Bohemian Rhapsody', 1975, 'Rock'),
+    ('Summertime', 1935, 'Jazz'),
+    ('No Woman, No Cry', 1974, 'Reggae'),
+    ('Thriller', 1982, 'Pop'),
+    ('Ring of Fire', 1963, 'Country'),
+    ('Respect', 1967, 'R&B'),
+    ('Around the World', 1997, 'Electronica'),
+    ('Concierto de Aranjuez', 1939, 'Clasica'),
+    ('Celia y Tito', 1981, 'Salsa');
