@@ -15,8 +15,12 @@ Nombre varchar (20) not null primary key,
 Caracteristicas varchar (100) null,
 Origen varchar (200) NULL,
 Instrumento varchar (100) not null,
+Musicos varchar (20) not null,
 Epoca varchar (20) not null,
-foreign key (Epoca) REFERENCES Epoca (Nombre)
+Instrumento varchar (20) not null,
+foreign key (Epoca) REFERENCES Epoca (Nombre),
+foreign key (Musicos) REFERENCES Musico (Nombre),
+foreign key (Instrumento) REFERENCES Instrumento(Nombre)
 );
 
 create table Musico(
@@ -36,6 +40,7 @@ Creador varchar (20) not null,
 Tipo varchar (20) not null,
 Material varchar (20) null
 );
+
 
 create table Obras_Famosas(
 Nombre varchar (20) not null primary key,
