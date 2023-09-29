@@ -41,6 +41,12 @@ Tipo varchar (20) not null,
 Material varchar (20) null
 );
 
+create table Musico, Obras Famosas(
+Nombre_Musico varchar (20) not null primary key,
+Nombre_obra varchar (20) not null primary key,
+foreign key (Nombre_Musico) REFERENCES Musico(Nombre),
+foreign key (Nombre_obra) REFERENCES Nombre_obra(Nombre)
+);
 
 create table Obras_Famosas(
 Nombre varchar (20) not null primary key,
