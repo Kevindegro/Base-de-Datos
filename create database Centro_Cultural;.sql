@@ -109,3 +109,9 @@ VALUES
     ('Around the World', 1997, 'Electronica'),
     ('Concierto de Aranjuez', 1939, 'Clasica'),
     ('Celia y Tito', 1981, 'Salsa');
+
+
+SELECT G.Nombre AS Genero, G.Caracteristicas AS CaracteristicasGenero, E.Nombre AS Epoca, E.A_inicio AS PeriodoInicio, M.Nombre AS NombreMusico, M.F_nacimiento AS FechaNacimientoMusico
+FROM Genero G
+JOIN Epoca E ON G.Epoca = E.Nombre
+LEFT JOIN Musico M ON G.Nombre = M.Genero;
