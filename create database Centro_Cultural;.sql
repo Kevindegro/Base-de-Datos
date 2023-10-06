@@ -56,9 +56,10 @@ create table Musico_Obras_Famosas(
 Nombre_Musico varchar (20) not null,
 Nombre_Obra varchar (20) not null,
 primary key (Nombre_Musico, Nombre_Obra),
-foreign key (Nombre_Musico) REFERENCES Obras_Famosas(Nombre),
-foreign key (Nombre_Obra) REFERENCES Musico(Nombre)
+foreign key (Nombre_Musico) REFERENCES Musico(Nombre),
+foreign key (Nombre_Obra) REFERENCES Obras_Famosas(Nombre)
 );
+
 
 INSERT INTO Epoca (Nombre, Caracteristicas, A_inicio, A_final, Genero_Epoca)
 VALUES
@@ -125,6 +126,31 @@ VALUES
     ('Concierto de Aranjuez', 1939, 'Clasica'),
     ('Celia y Tito', 1981, 'Salsa');
 
+INSERT INTO Musico_Obras_Famosas(Nombre_Musico, Nombre_Obra)
+VALUES
+    ('Ludwig van Beethoven','Sonata para Piano No. 14'),
+    ('Elvis Presley','Bohemian Rhapsody'),
+    ('Miles Davis','Summertime'),
+    ('Bob Marley','No Woman, No Cry'),
+    ('Michael Jackson','Thriller'),
+    ('Johnny Cash','Ring of Fire'),
+    ('Aretha Franklin','Respect'),
+    ('Daft Punk','Around the World'),
+    ('Santana','Concierto de Aranjuez'),
+    ('Celia Cruz','Celia y Tito');
+
+INSERT INTO Genero_Instrumento(Nombre_Genero,Nombre_Instrumento)
+VALUES('Rock','Piano'),
+('Clasica','Guitarra'),
+('Jazz','Violin'),
+('Hip-Hop','Trompeta'),
+('Pop','Bateria'),
+('Electronica','Flauta'),
+('Reggae','Saxofon'),
+('Salsa','organo'),
+('Country','Arpa'),
+('R&B','Tambor');
+
 //1
 SELECT G.Nombre AS Genero,G.Caracteristicas AS C_Genero, G.Origen, E.Nombre AS Epoca, E.A_inicio AS P_Inicio, M.Nombre AS Nombre_Musico, M.F_nacimiento AS F_Nacimiento_Musico
 FROM Genero G
@@ -132,5 +158,28 @@ JOIN Epoca E ON G.Epoca = E.Nombre
 LEFT JOIN Musico M ON G.Nombre = M.Genero;
 
 //2
-SELECT
-FROM Musico_Obras_Famosas MO, Musico M, Genero G, Obras_Famosas O
+SELECT MO.Nombre_Obra, O.F_creacion, G.Nombre, M.Nombre
+FROM Musico_Obras_Famosas MO
+left join Obras_Famosas O ON MO.Nombre_Obra = O.Nombre
+right join Musico M ON  MO.Nombre_Musico = M.Nombre
+left join Genero G ON O.Genero = G.Nombre;
+
+//3
+SELECT I.Nombre as Instrumento_Nombre, G.Nombre as Genero_Nombre
+FROM Genero_Instrumento GI
+left join Instrumento I ON GI.Nombre_Instrumento = I.Nombre
+left join Genero G ON GI.Nombre_Genero= G.Nombre;
+
+//4
+SELECT Nombre 
+FROM Musico
+Where Nombre Like '%n';
+
+//5
+SELECT Nombre, F_creacion
+FROM Obras_Famosas
+where F_creacion between 1950 and 1970;
+
+//6
+
+
