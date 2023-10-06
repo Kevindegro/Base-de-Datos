@@ -126,10 +126,11 @@ VALUES
     ('Celia y Tito', 1981, 'Salsa');
 
 //1
-SELECT G.Nombre AS Genero,G.Caracteristicas AS C_Genero,G.Origen, E.Nombre AS Epoca, E.A_inicio AS P_Inicio, M.Nombre AS Nombre_Musico, M.F_nacimiento AS F_Nacimiento_Musico
+SELECT G.Nombre AS Genero,G.Caracteristicas AS C_Genero, G.Origen, E.Nombre AS Epoca, E.A_inicio AS P_Inicio, M.Nombre AS Nombre_Musico, M.F_nacimiento AS F_Nacimiento_Musico
 FROM Genero G
 JOIN Epoca E ON G.Epoca = E.Nombre
 LEFT JOIN Musico M ON G.Nombre = M.Genero;
 
 //2
 SELECT
+FROM Musico_Obras_Famosas MO, Musico M, Genero G, Obras_Famosas O
