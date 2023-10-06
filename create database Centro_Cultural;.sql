@@ -181,5 +181,27 @@ FROM Obras_Famosas
 where F_creacion between 1950 and 1970;
 
 //6
+SELECT M.Nombre, M.Historia
+FROM Musico M
+order by F_nacimiento desc;
 
+//7
+SELECT M.Nombre, M.Historia
+FROM Musico M
+order by F_nacimiento asc;
 
+//8
+SELECT I.Nombre as Instrumento, I.Material, (SELECT count(Material) from Instrumento where Material like '%madera%') as Cantidad
+FROM Instrumento I
+Where I.Material like '%madera%'
+group by Nombre,Material;
+
+//9
+SELECT E.Nombre as Epoca, group_concat(G.Nombre) as Genero 
+FROM Epoca E
+inner join Genero G on E.Nombre = G.Epoca;
+
+//10
+SELECT *
+FROM Genero
+where Origen is not null;
