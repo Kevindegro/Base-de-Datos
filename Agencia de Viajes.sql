@@ -26,15 +26,15 @@ CREATE TABLE Pago (
     IDPago INT (5) PRIMARY KEY,
     TipoPago VARCHAR(50),
     Monto INT(10),
-    DNI INT,
-    FOREIGN KEY (IDPago) REFERENCES Banco(Nombre)
+    Banco VARCHAR (50),
+    FOREIGN KEY (Banco) REFERENCES Banco(Nombre)
 );
 
 
 CREATE TABLE Cliente (
-    Nombre VARCHAR(255) PRIMARY KEY,
+    DNI INT PRIMARY KEY not null,
+    Nombre VARCHAR(255),
     Domicilio VARCHAR(255),
-    DNI INT,
     CodigoPaquete INT (5),
     IDPago INT (5),
     FOREIGN KEY (CodigoPaquete) REFERENCES PaqueteTuristico(CodigoPaquete),
@@ -109,4 +109,3 @@ From Cliente C
 
 
 --10
-
