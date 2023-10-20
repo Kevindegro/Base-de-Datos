@@ -9,29 +9,11 @@ CREATE TABLE AgenciaViajes (
 );
 
 CREATE TABLE PaqueteTuristico (
-    CodigoPaquete INT PRIMARY KEY,
+    CodigoPaquete INT (5) PRIMARY KEY,
     CodigoAgencia INT,
     NombrePais VARCHAR(255),
     Precio DECIMAL(10, 2),
     FOREIGN KEY (CodigoAgencia) REFERENCES AgenciaViajes(CodigoAgencia)
-);
-    
-CREATE TABLE Cliente (
-    Nombre VARCHAR(255) PRIMARY KEY,
-    Domicilio VARCHAR(255),
-    DNI INT,
-    CodigoPaquete INT,
-    IDPago INT,
-    FOREIGN KEY (CodigoPaquete) REFERENCES PaqueteTuristico(CodigoPaquete),
-    FOREIGN KEY (IDPago) REFERENCES Pago(IDPago)
-);
-
-CREATE TABLE Pago (
-    IDPago INT PRIMARY KEY,
-    TipoPago VARCHAR(50),
-    Monto DECIMAL(10, 2),
-    DNI INT,
-    FOREIGN KEY (IDPago) REFERENCES Banco(Nombre)
 );
 
 CREATE TABLE Banco (
@@ -39,6 +21,27 @@ CREATE TABLE Banco (
     Sucursal VARCHAR(255),
     FechaValidez DATE
 );
+
+CREATE TABLE Pago (
+    IDPago INT (5) PRIMARY KEY,
+    TipoPago VARCHAR(50),
+    Monto INT(10),
+    DNI INT,
+    FOREIGN KEY (IDPago) REFERENCES Banco(Nombre)
+);
+
+
+CREATE TABLE Cliente (
+    Nombre VARCHAR(255) PRIMARY KEY,
+    Domicilio VARCHAR(255),
+    DNI INT,
+    CodigoPaquete INT (5),
+    IDPago INT (5),
+    FOREIGN KEY (CodigoPaquete) REFERENCES PaqueteTuristico(CodigoPaquete),
+    FOREIGN KEY (IDPago) REFERENCES Pago(IDPago)
+);
+
+
 
 
 
