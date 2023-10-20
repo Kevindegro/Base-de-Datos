@@ -20,13 +20,6 @@ CREATE TABLE Destino (
     NombrePais VARCHAR(255)
 );
 
-CREATE TABLE ComboPaquete (
-    CodigoCombo INT PRIMARY KEY,
-    CodigoPaquetePrincipal INT,
-    CodigoPaqueteRelacionado INT,
-    FOREIGN KEY (CodigoPaquetePrincipal) REFERENCES PaqueteTuristico(CodigoPaquete),
-    FOREIGN KEY (CodigoPaqueteRelacionado) REFERENCES PaqueteTuristico(CodigoPaquete)
-);
 
 CREATE TABLE Cliente (
     DNI INT PRIMARY KEY,
@@ -43,7 +36,7 @@ CREATE TABLE Pago (
 );
 
 CREATE TABLE MedioPago (
-    NombreUnico VARCHAR(50) PRIMARY KEY,
+    Nombre VARCHAR(50) PRIMARY KEY,
     Sucursal VARCHAR(255),
     FechaValidez DATE
 );
@@ -68,10 +61,6 @@ VALUES
     (2, 'Brasil'),
     (3, 'Chile');
 
-INSERT INTO ComboPaquete (CodigoCombo, CodigoPaquetePrincipal, CodigoPaqueteRelacionado)
-VALUES
-    (1, 101, 102),
-    (2, 102, 103);
 
 INSERT INTO Cliente (DNI, Nombre, Domicilio)
 VALUES
@@ -85,8 +74,42 @@ VALUES
     (202, 1002, 'Efectivo', 380000),
     (203, 1003, 'Tarjeta', 420000);
 
-INSERT INTO MedioPago (NombreUnico, Sucursal, FechaValidez)
+INSERT INTO MedioPago (Nombre, Sucursal, FechaValidez)
 VALUES
     ('Banco A', 'Sucursal 1', '2023-12-31'),
     ('Banco B', 'Sucursal 2', '2024-06-30'),
     ('Banco C', 'Sucursal 3', '2024-09-30');
+
+--1
+Select PT.CodigoPaquete, PT.Precio, AV.Ciudad 
+From PaqueteTuristico PT
+join AgenciaViajes AV on PT.CodigoAgencia = AV.CodigoAgencia;
+
+--2
+Select
+From Clinetes C,
+Where C.DNI in(Select Distinct)
+
+--3
+
+
+--4
+
+
+--5
+
+
+--6
+
+
+--7
+
+
+--8
+
+
+--9
+
+
+--10
+
