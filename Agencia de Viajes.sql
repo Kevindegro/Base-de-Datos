@@ -11,31 +11,30 @@ CREATE TABLE AgenciaViajes (
 CREATE TABLE PaqueteTuristico (
     CodigoPaquete INT PRIMARY KEY,
     CodigoAgencia INT,
+    NombrePais VARCHAR(255),
     Precio DECIMAL(10, 2),
     FOREIGN KEY (CodigoAgencia) REFERENCES AgenciaViajes(CodigoAgencia)
 );
-
-CREATE TABLE Destino (
-    CodigoDestino INT PRIMARY KEY,
-    NombrePais VARCHAR(255)
-);
-
-
+    
 CREATE TABLE Cliente (
-    DNI INT PRIMARY KEY,
-    Nombre VARCHAR(255),
-    Domicilio VARCHAR(255)
+    Nombre VARCHAR(255) PRIMARY KEY,
+    Domicilio VARCHAR(255),
+    DNI INT,
+    CodigoPaquete INT,
+    IDPago INT,
+    FOREIGN KEY (CodigoPaquete) REFERENCES PaqueteTuristico(CodigoPaquete),
+    FOREIGN KEY (IDPago) REFERENCES Pago(IDPago)
 );
 
 CREATE TABLE Pago (
     IDPago INT PRIMARY KEY,
-    DNI INT,
     TipoPago VARCHAR(50),
     Monto DECIMAL(10, 2),
-    FOREIGN KEY (DNI) REFERENCES Cliente(DNI)
+    DNI INT,
+    FOREIGN KEY (IDPago) REFERENCES Banco(Nombre)
 );
 
-CREATE TABLE MedioPago (
+CREATE TABLE Banco (
     Nombre VARCHAR(50) PRIMARY KEY,
     Sucursal VARCHAR(255),
     FechaValidez DATE
@@ -49,17 +48,11 @@ VALUES
     (2, '2018-03-10', 'CABA'),
     (3, '2019-06-25', 'Cordoba');
 
-INSERT INTO PaqueteTuristico (CodigoPaquete, CodigoAgencia, Precio)
+INSERT INTO PaqueteTuristico (CodigoPaquete, CodigoAgencia, Precio, NombrePais)
 VALUES
-    (101, 1, 450000),
-    (102, 2, 380000),
-    (103, 3, 420000);
-
-INSERT INTO Destino (CodigoDestino, NombrePais)
-VALUES
-    (1, 'Argentina'),
-    (2, 'Brasil'),
-    (3, 'Chile');
+    (101, 1, 450000, 'Argentina'),
+    (102, 2, 380000, 'Brasil'),
+    (103, 3, 420000, 'Chile');
 
 
 INSERT INTO Cliente (DNI, Nombre, Domicilio)
@@ -76,22 +69,23 @@ VALUES
 
 INSERT INTO MedioPago (Nombre, Sucursal, FechaValidez)
 VALUES
-    ('Banco A', 'Sucursal 1', '2023-12-31'),
-    ('Banco B', 'Sucursal 2', '2024-06-30'),
-    ('Banco C', 'Sucursal 3', '2024-09-30');
+    ('A.Banco', 'Sucursal 1', '2023-12-31'),
+    ('B.Banco', 'Sucursal 2', '2024-06-30'),
+    ('C.Banco', 'Sucursal 3', '2024-09-30');    
 
 --1
-Select PT.CodigoPaquete, PT.Precio, AV.Ciudad 
+Select PT.CodigoPaquete, PT.Precio, PT.NombrePais, AV.Ciudad 
 From PaqueteTuristico PT
 join AgenciaViajes AV on PT.CodigoAgencia = AV.CodigoAgencia;
 
 --2
-Select
-From Clinetes C,
-Where C.DNI in(Select Distinct)
+Select C.DNI, C.Nombre
+From Cliente C
+Where C.DNI in(Select Distinct P.DNI from Pago P);
 
 --3
-
+Select
+From Cliente C
 
 --4
 
