@@ -92,7 +92,13 @@ INNER JOIN Piezas P ON S.Codigo_Pieza = P.Codigo
 and P.Nombre in ('Pieza 1');
 
 --------(F)--------
-
+SELECT Nombre
+FROM Piezas
+WHERE Codigo IN (
+    SELECT Codigo_Pieza
+    FROM Suministra
+    WHERE ID_Provedor = 'HAL'
+);
 
 --------(G)--------
 SELECT P.Nombre AS NombreProveedor, Precio, Pi.Nombre AS NombrePieza
@@ -105,7 +111,9 @@ WHERE Precio = (SELECT MAX(Precio) FROM Suministra);
 
 
 --------(I)--------
-
+UPDATE Suministra
+SET Precio = Precio + 100
+Select * from Suministra;
 
 --------(J)--------
 
