@@ -846,7 +846,7 @@ CREATE TABLE empleado (
   extension VARCHAR(10) NOT NULL,
   email VARCHAR(100) NOT NULL,
   codigo_oficina VARCHAR(10) NOT NULL,
-  codi  go_jefe INTEGER DEFAULT NULL,
+  codigo_jefe INTEGER DEFAULT NULL,
   puesto VARCHAR(50) DEFAULT NULL,
   PRIMARY KEY (codigo_empleado),
   FOREIGN KEY (codigo_oficina) REFERENCES oficina (codigo_oficina),
@@ -934,8 +934,11 @@ From oficina O;
 -----------(2)-----------
 Select O.ciudad, O.telefono  
 From oficina O
-Where O.pais like '%Espa?a%';
+Where O.pais like '%Espa%';
 
 -----------(3)-----------
-Select
-From
+Select E.email, E.nombre, E.apellido1, E.apellido2
+From empleado E
+Where E.codigo_jefe = 7;
+
+-----------(4)-----------
