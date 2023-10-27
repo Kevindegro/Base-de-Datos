@@ -846,7 +846,7 @@ CREATE TABLE empleado (
   extension VARCHAR(10) NOT NULL,
   email VARCHAR(100) NOT NULL,
   codigo_oficina VARCHAR(10) NOT NULL,
-  codigo_jefe INTEGER DEFAULT NULL,
+  codi  go_jefe INTEGER DEFAULT NULL,
   puesto VARCHAR(50) DEFAULT NULL,
   PRIMARY KEY (codigo_empleado),
   FOREIGN KEY (codigo_oficina) REFERENCES oficina (codigo_oficina),
@@ -926,3 +926,16 @@ CREATE TABLE pago (
   PRIMARY KEY (codigo_cliente, id_transaccion),
   FOREIGN KEY (codigo_cliente) REFERENCES cliente (codigo_cliente)
 );
+
+-----------(1)-----------
+Select O.codigo_oficina, O.ciudad
+From oficina O;
+
+-----------(2)-----------
+Select O.ciudad, O.telefono  
+From oficina O
+Where O.pais like '%Espa?a%';
+
+-----------(3)-----------
+Select
+From
