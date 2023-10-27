@@ -944,4 +944,21 @@ Where E.codigo_jefe = 7;
 -----------(4)-----------
 Select E.puesto, E.Nombre, E.apellido1, E.apellido2, E.email
 From empleado E
-Where E.codigo_jefe is NULL; 
+Where E.codigo_jefe is NULL;
+
+-----------(5)-----------
+Select E.nombre, E.apellido1, E.apellido2, E.puesto
+From empleado E
+Where E.puesto not in ('Representante Ventas');
+
+-----------(6)-----------
+Select C.nombre_cliente
+From cliente C
+Where C.pais = 'Spain';
+
+-----------(7)-----------
+Select Distinct P.Estado
+From Pedido P;
+
+-----------(8)-----------
+
