@@ -95,10 +95,11 @@ and P.Nombre in ('Pieza 1');
 
 
 --------(G)--------
-Select
-From Suministra S
-inner JOIN Pieza ON S.ID_Provedor = Pieza.Nombre 
-inner JOIN 
+SELECT P.Nombre AS NombreProveedor, Precio, Pi.Nombre AS NombrePieza
+FROM Suministra S
+INNER JOIN Proveedores P ON S.ID_Provedor = P.ID
+INNER JOIN Piezas Pi ON S.Codigo_Pieza = Pi.Codigo
+WHERE Precio = (SELECT MAX(Precio) FROM Suministra);
 
 --------(H)--------
 
