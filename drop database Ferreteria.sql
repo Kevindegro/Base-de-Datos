@@ -21,7 +21,8 @@ create table Suministra(
     Foreign key(Codigo_Pieza) REFERENCES Piezas (Codigo)
 );
 
-INSERT INTO Piezas (Codigo, Nombre) VALUES
+INSERT INTO Piezas (Codigo, Nombre) 
+VALUES
   (1, 'Pieza 1'),
   (2, 'Pieza 2'),
   (3, 'Pieza 3'),
@@ -31,9 +32,10 @@ INSERT INTO Piezas (Codigo, Nombre) VALUES
   (7, 'Pieza 7'),
   (8, 'Pieza 8'),
   (9, 'Pieza 9'),
-  (10, 'Pieza 10');
+  (10, 'Pieza 10s');
 
-INSERT INTO Proveedores (ID, Nombre) VALUES
+INSERT INTO Proveedores (ID, Nombre) 
+VALUES
   ('P1', 'Proveedor 1'),
   ('P2', 'Proveedor 2'),
   ('P3', 'Proveedor 3'),
@@ -45,7 +47,8 @@ INSERT INTO Proveedores (ID, Nombre) VALUES
   ('P9', 'Proveedor 9'),
   ('P10', 'Proveedor 10');
 
-INSERT INTO Suministra (Codigo_Pieza, ID_Provedor, Precio) VALUES
+INSERT INTO Suministra (Codigo_Pieza, ID_Provedor, Precio) 
+VALUES
   (1, 'P1', 50),
   (2, 'P1', 60),
   (3, 'P2', 45),
@@ -56,4 +59,55 @@ INSERT INTO Suministra (Codigo_Pieza, ID_Provedor, Precio) VALUES
   (8, 'P4', 48),
   (9, 'P5', 52),
   (10, 'P5', 58);
+
+--------(A)--------
+Select P.Nombre
+from Piezas P;
+
+--------(B)--------
+Select *
+From Proveedores;
+
+--------(C)--------
+Select avg(S.Precio)
+From Suministra S;
+
+--------(D)--------
+Select P.Nombre
+From Piezas P
+where P.Nombre like '%s';
+
+--------(E)--------
+
+/*Sin Subconsulta*/
+SELECT S.ID_Provedor
+FROM Suministra S
+INNER JOIN Piezas P ON S.Codigo_Pieza = P.Codigo
+where P.Nombre = ('Pieza 1');
+
+/*Con Subconsulta*/
+SELECT S.ID_Provedor
+FROM Suministra S
+INNER JOIN Piezas P ON S.Codigo_Pieza = P.Codigo
+and P.Nombre in ('Pieza 1');
+
+--------(F)--------
+
+
+--------(G)--------
+Select
+From Suministra S
+inner JOIN Pieza ON S.ID_Provedor = Pieza.Nombre 
+inner JOIN 
+
+--------(H)--------
+
+
+--------(I)--------
+
+
+--------(J)--------
+
+
+--------(K)--------
 
